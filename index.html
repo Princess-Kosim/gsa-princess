@@ -313,21 +313,57 @@
         }
         
         @media (max-width: 768px) {
-            .hero {
-                padding-top: 150px;
-            }
-            .profile-photo-3d {
-                width: 250px;
-                height: 250px;
-            }
-            .jumbo-card {
-                padding: 30px;
-                margin: 0 5% 30px;
-            }
-            .card-header h2 {
-                font-size: 1.8rem;
-            }
-        }
+    /* 1. Paksa Hero Section jadi satu kolom ke bawah & rata tengah */
+    .hero {
+        padding-top: 150px;
+        flex-direction: column; /* Biar foto & sticker numpuk ke bawah */
+        text-align: center;
+        gap: 30px;
+    }
+
+    /* 2. Gedein dikit judulnya biar ga kekecilan di HP */
+    .hero-title h1 {
+        font-size: 2.2rem !important; /* Gunakan !important biar override inline style */
+        line-height: 1.1;
+    }
+
+    /* 3. Pastikan container foto profil rata tengah */
+    .content-wrapper {
+        justify-content: center;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    /* 4. Ukuran Foto Profil di HP biar pas */
+    .profile-photo-3d {
+        width: 280px;
+        height: 280px;
+    }
+
+    /* 5. Kartu About Me, Spotify, & IG biar ga mepet kiri */
+    .jumbo-card {
+        padding: 30px 20px;
+        margin: 0 15px 30px; /* Kasih jarak kiri-kanan dari pinggir HP */
+        width: auto; /* Biar ga overflow */
+        text-align: center; /* Teks About Me jadi rata tengah biar estetik */
+    }
+
+    /* 6. Header Kartu (Logo + Judul) jadi tengah */
+    .card-header {
+        flex-direction: column;
+        justify-content: center;
+        gap: 10px;
+    }
+
+    /* 7. Navigasi HP */
+    nav {
+        width: 90%;
+        padding: 15px 5%;
+        justify-content: center; /* Logo & Profile jadi tengah */
+        gap: 15px;
+    }
+}
     </style>
 </head>
 
