@@ -5,7 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Princess Kosim | GSA 2026</title>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap" rel="stylesheet">
     <style>
         :root {
             --g-blue: #4285F4;
@@ -17,6 +18,10 @@
             --bg-dark: #0b0d0f;
             --card-solid: #121518;
         }
+        /* MEMBUAT EFEK SCROLL HALUS KE SELURUH DOKUMEN */
+        html {
+            scroll-behavior: smooth;
+        }
 
         /* --- STYLE TAMBAHAN UNTUK WELCOME OVERLAY --- */
         #welcome-overlay {
@@ -25,7 +30,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: var(--bg-dark); /* Overlay tetap gelap agar dramatis saat masuk */
+            background-color: var(--bg-dark);
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -75,17 +80,48 @@
             60% { transform: translateY(-5px); }
         }
 
-        /* --- KEMBALI KE KODE ASLIMU --- */
         body {
             margin: 0;
             font-family: 'Plus Jakarta Sans', sans-serif;
-            background-color: #ffffff; /* Sesuai kodemu */
-            color: #000000; /* Sesuai kodemu */
+            background-color: #ffffff;
+            color: #000000;
             line-height: 2;
             overflow-x: hidden;
             background-image: linear-gradient(rgba(66, 133, 244, 0.1) 3px, transparent 1px), linear-gradient(90deg, rgba(66, 133, 244, 0.1) 3px, transparent 1px);
             background-size: 50px 50px;
             background-attachment: fixed;
+            scroll-behavior: smooth;
+        }
+
+        /* --- NAVIGASI BARU --- */
+        .main-nav {
+            position: fixed;
+            top: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(10px);
+            padding: 10px 25px;
+            border-radius: 50px;
+            display: flex;
+            gap: 20px;
+            z-index: 9000;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            border: 1px solid rgba(66, 133, 244, 0.2);
+        }
+
+        .main-nav a {
+            text-decoration: none;
+            color: #333;
+            font-size: 0.85rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: 0.3s;
+        }
+
+        .main-nav a:hover {
+            color: var(--g-blue);
         }
 
         .hero {
@@ -101,10 +137,6 @@
             font-size: 4.5rem;
             font-weight: 800;
             margin: 0;
-            background: linear-gradient(90deg, var(--g-blue), var(--g-red), var(--g-yellow), var(--g-green));
-            -webkit-background-clip: text;
-            background-clip: text;
-            -webkit-text-fill-color: transparent;
             text-transform: uppercase;
             letter-spacing: -2px;
             line-height: 1;
@@ -134,44 +166,24 @@
             perspective: 1000px;
         }
 
-        /* --- UPDATE UNTUK POLAROID STYLE --- */
         .profile-photo-3d {
             width: 380px;
-            height: auto; /* Biarkan tinggi menyesuaikan agar aspek rasio foto terjaga */
-            border-radius: 5px; /* Radius kecil untuk ujung polaroid */
+            height: auto;
+            border-radius: 5px;
             object-fit: cover;
-            /* Border solid tebal ala polaroid */
             border-top: 15px solid #fff;
             border-left: 15px solid #fff;
             border-right: 15px solid #fff;
-            border-bottom: 60px solid #fff; /* Bagian bawah lebih tebal untuk tulisan/ruang kosong */
-            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.5); /* Shadow sedikit lebih lembut tapi tetap dalam */
+            border-bottom: 60px solid #fff;
+            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.5);
             transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1);
             transform-style: preserve-3d;
             display: block;
-            /* Tambahkan tulisan tangan kecil di bawah (opsional, tapi menambah kesan polaroid) */
-            position: relative;
-        }
-
-        /* Pseudo-element untuk tulisan di polaroid */
-        .profile-photo-3d::after {
-            content: "Princess @ Medan '26";
-            position: absolute;
-            bottom: 10px; /* Posisi di dalam border bawah */
-            left: 50%;
-            transform: translateX(-50%);
-            font-family: 'Permanent Marker', cursive; /* Gunakan font tulisan tangan jika ada, atau ganti default */
-            font-size: 1.2rem;
-            color: #333;
-            opacity: 0.8;
-            pointer-events: none; /* Agar tidak mengganggu interaksi hover/klik */
         }
 
         .profile-photo-3d:hover {
             transform: rotateY(15deg) rotateX(10deg) scale(1.05);
-            /* Tidak mengubah warna border pada hover untuk menjaga estetika polaroid putih */
         }
-        /* ---------------------------------- */
 
         .shape {
             position: absolute;
@@ -200,30 +212,6 @@
             z-index: 1001;
         }
 
-        nav {
-            padding: 20px 8%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            backdrop-filter: blur(20px);
-            background: rgba(143, 173, 202, 0.8);
-            position: fixed;
-            width: 84%;
-            top: 0;
-            left: 0;
-            right: 0;
-            margin: auto;
-            z-index: 1000;
-        }
-
-        .mini-profile {
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            border: 2px solid var(--g-blue);
-            object-fit: cover;
-        }
-
         .gsa-sticker {
             max-width: 400px;
             animation: float 4s infinite ease-in-out;
@@ -233,33 +221,123 @@
             0%, 100% { transform: translateY(0); }
             50% { transform: translateY(-20px); }
         }
+        section {
+            scroll-margin-top: 120px; /* AGAR PAS DI SCROLL TIDAK TERPOTONG NAVIGASI */
+        }
 
         .jumbo-card {
-            background: color(from color srgb r g b);
+            background: rgb(234, 234, 234);
             padding: 50px;
             border-radius: 40px;
-            max-width: 900px;
-            margin: 0 auto 40px;
-            box-shadow: 0 20px 40px rgba(159, 88, 88, 0.3);
+            max-width: 1000px;
+            margin: 0 auto 50px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.05);
+            border-left: 10px solid var(--g-blue);
+            position: relative;
+            overflow: hidden;
             transition: 0.3s;
-            border-left: 10px solid transparent;
+            box-sizing: border-box;
+            
         }
 
         .jumbo-card:hover { transform: translateY(-5px); }
-        .about-card { border-left-color: var(--g-blue); }
-        .spotify-card { border-left-color: var(--spotify-green); }
-        .ig-card { border-left-color: var(--ig-purple); }
 
         .card-header {
             display: flex;
             align-items: center;
             gap: 15px;
-            margin-bottom: 25px;
+            margin-bottom: 30px;
         }
 
-        .card-header h2 { margin: 0; font-size: 2.5rem; }
-        .icon-logo { width: 45px; height: 45px; }
-        .highlight-name { color: var(--g-blue); font-weight: 800; border-bottom: 4px solid var(--g-green); }
+        .card-header h2 {
+            margin: 0;
+            font-size: 2.2rem;
+            font-weight: 800;
+        }
+
+        .table-container {
+            width: 100%;
+            overflow-x: auto;
+            margin-top: 20px;
+            border-radius: 20px;
+            border: 1px solid #898989;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: left;
+            min-width: 600px;
+        }
+
+        th {
+            background-color: #b1d8ff;
+            padding: 20px;
+            font-weight: 800;
+            color: var(--g-blue);
+            border-bottom: 3px solid #8e8e8e;
+        }
+
+        td {
+            padding: 20px;
+            border-bottom: 1px solid #6e6e6e;
+            vertical-align: top;
+        }
+
+        .tag {
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            display: inline-block;
+            margin-bottom: 5px;
+        }
+
+        .tag-blue { background: rgba(66, 133, 244, 0.1); color: var(--g-blue); }
+        .tag-red { background: rgba(234, 67, 53, 0.1); color: var(--g-red); }
+        .tag-yellow { background: rgba(251, 188, 5, 0.1); color: #b08400; }
+        .tag-green { background: rgba(52, 168, 83, 0.1); color: var(--g-green); }
+
+        .res-list { list-style: none; padding: 0; }
+        .res-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+            margin-bottom: 20px;
+            padding: 15px;
+            background: #fdfdfd;
+            border-radius: 15px;
+            border: 1px solid #f0f0f0;
+            transition: 0.3s;
+        }
+
+        .res-number {
+            background: var(--g-yellow);
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+
+        /* --- GRID UNTUK SPOTIFY & IG --- */
+        .others-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            max-width: 1000px;
+            margin: 0 auto 50px;
+        }
+
+        .others-grid .jumbo-card {
+            margin: 0;
+            height: 100%;
+        }
 
         .social-btn {
             display: inline-flex;
@@ -271,81 +349,20 @@
             text-decoration: none;
             border-radius: 50px;
             font-weight: bold;
-            font-size: 1.2rem;
             transition: 0.3s;
         }
 
-        .social-btn:hover { background: #e1306c; box-shadow: 0 10px 20px rgba(193, 53, 132, 0.3); }
+        .icon-logo { width: 30px; }
 
         @media (max-width: 768px) {
-            .hero { padding-top: 150px; }
-            .profile-photo-3d { width: 250px; height: auto; border-bottom-width: 40px; border-left-width: 10px; border-right-width: 10px; border-top-width: 10px; }
-            .profile-photo-3d::after { font-size: 0.8rem; bottom: 5px; }
-            .jumbo-card { padding: 30px; margin: 0 5% 30px; }
-            .card-header h2 { font-size: 1.8rem; }
-            .hero-title h1 { font-size: 3rem; }
+            .others-grid { grid-template-columns: 1fr; padding: 0 15px; }
+            .hero-title h1 { font-size: 2.2rem; }
+            .main-nav { width: 90%; gap: 10px; padding: 10px; overflow-x: auto; justify-content: flex-start; }
+            .main-nav a { font-size: 0.6rem; white-space: nowrap; }
+            .profile-photo-3d { width: 220px; }
+            .jumbo-card { margin: 0 15px 25px; padding: 25px; }
         }
-
-        @media (max-width: 768px) {
-
-    .hero {
-        padding: 140px 20px 60px;
-        gap: 25px;
-    }
-
-    .hero-title h1 {
-        font-size: 2.2rem !important;
-        letter-spacing: -1px;
-        line-height: 1.2;
-    }
-
-    .hero-title p {
-        font-size: 0.9rem;
-        letter-spacing: 3px;
-    }
-
-    .content-wrapper {
-        flex-direction: column;
-        gap: 30px;
-    }
-
-    .profile-photo-3d {
-        width: 220px;
-    }
-
-    .gsa-sticker {
-        width: 220px;
-        max-width: 80%;
-    }
-
-    nav {
-        width: 92%;
-        padding: 12px 15px;
-    }
-
-    .jumbo-card {
-        margin: 0 15px 25px;
-        padding: 25px;
-        border-radius: 25px;
-    }
-
-    .card-header h2 {
-        font-size: 1.6rem;
-    }
-
-    .jumbo-card p {
-        font-size: 16px !important;
-        line-height: 1.6;
-    }
-
-    .social-btn {
-        font-size: 1rem;
-        padding: 12px 25px;
-    }
-
-}
     </style>
-    <link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap" rel="stylesheet">
 </head>
 
 <body>
@@ -357,38 +374,30 @@
         <div class="click-hint">CLICK ANYWHERE TO ENTER</div>
     </div>
 
-    <div class="background-foto"></div>
+    <nav class="main-nav">
+        <a href="#about">About</a>
+        <a href="#why">Why GSA</a>
+        <a href="#motivation">Motivation</a>
+        <a href="#resolutions">Resolutions</a>
+        <a href="#others">Connect</a>
+    </nav>
+
     <div class="floating-shapes">
         <div class="shape s1"></div>
         <div class="shape s2"></div>
         <div class="shape s3"></div>
     </div>
 
-    <nav>
-        <div style="font-weight: 700; color: var(--g-blue); font-size: 1.4rem;">#TeamGoogle <span style="color:rgb(255, 255, 255)">2026</span></div>
-        <img src="profile.jpeg" alt="Princess" class="mini-profile">
-    </nav>
-
     <header class="hero">
-
         <div class="hero-title">
-
             <h1 style="font-size: 4.5rem; font-weight: 800; margin: 0; text-transform: uppercase; letter-spacing: -2px; line-height: 1; background: none; -webkit-text-fill-color: initial;">
-
                 <span style="color: #4285F4;">Google</span>
-
                 <span style="color: #EA4335;">Student</span>
-
                 <span style="color: #FBBC05;">Ambassador</span>
-
                 <span style="color: #34A853;">2026</span>
-
             </h1>
-
             <p>Lead, Innovate, Inspire</p>
-
         </div>
-
         <div class="content-wrapper">
             <div class="tilt-container">
                 <img src="profile01.jpeg" alt="Princess Kosim" class="profile-photo-3d">
@@ -397,9 +406,9 @@
         </div>
     </header>
 
-    <section class="jumbo-card about-card">
+    <section id="about" class="jumbo-card about-card">
         <div class="card-header">
-            <h2 style="color: var(--g-yellow);">About Me ✨</h2>
+            <h2 style="color: var(--g-yellow);">About Me</h2>
         </div>
         <p style="font-size: 25px; color: #000000; text-align: justify;">
             Hello! I am <span class="highlight-name">Princess Kosim</span>, born on October 11th, 2006. Currently residing in the vibrant city of Medan, I am pursuing my Bachelor's degree at <strong>Universitas Pelita Harapan Medan</strong>. I am part
@@ -410,24 +419,119 @@
         </p>
     </section>
 
-    <section class="jumbo-card spotify-card">
+    <section id="why" class="jumbo-card" style="border-left-color: var(--g-blue);">
         <div class="card-header">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/1/19/Spotify_logo_without_text.svg" class="icon-logo" alt="Spotify">
-            <h2 style="color: var(--spotify-green);">Music Vibe</h2>
+            <h2 style="color: var(--g-blue);">Why Join GSA 2026? 🚀</h2>
         </div>
-        <p style="margin-bottom: 20px; opacity: 0.8; font-size: 25px; color: #000000;">Enjoy my favorite tracks and playlists!</p>
-        <iframe data-testid="embed-iframe" style="border-radius:12px" src="https://open.spotify.com/embed/playlist/2170cqvGR6Qb6TMFnAsA0j?utm_source=generator&theme=0" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
-            loading="lazy"></iframe>
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Aspek Fokus</th>
+                        <th>Tujuan Utama (Goals)</th>
+                        <th>Dampak bagi Komunitas</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>
+                            <span class="tag tag-blue">Technology Access</span><br>
+                            <strong>Google Ecosystem</strong>
+                        </td>
+                        <td>Mendapatkan akses eksklusif ke resource Google (Cloud, AI, Firebase) untuk riset akademik.</td>
+                        <td>Membagikan update teknologi terbaru Google kepada mahasiswa IT di Medan agar tidak ketinggalan tren global.</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <span class="tag tag-red">Leadership</span><br>
+                            <strong>Management Skill</strong>
+                        </td>
+                        <td>Mengasah kemampuan <strong>public speaking</strong> dan manajemen proyek melalui penyelenggaraan <strong>event</strong> berskala besar.</td>
+                        <td>Menjadi mentor bagi teman sejawat di UPH Medan dalam menavigasi karier di dunia teknologi.</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <span class="tag tag-yellow">Networking</span><br>
+                            <strong>Global Connection</strong>
+                        </td>
+                        <td>Membangun koneksi dengan para pakar dari Google serta sesama Ambassador di seluruh dunia.</td>
+                        <td>Membuka pintu kolaborasi antar kampus untuk proyek-proyek inovasi masa depan.</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <span class="tag tag-green">Career Growth</span><br>
+                            <strong>Portfolio Building</strong>
+                        </td>
+                        <td>Memvalidasi skill Information Systems saya dengan pengakuan langsung dari raksasa teknologi, Google.</td>
+                        <td>Membuktikan bahwa talenta dari Medan mampu bersaing di panggung internasional.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
     </section>
 
-    <section class="jumbo-card ig-card">
+    <section id="motivation" class="jumbo-card" style="border-left-color: var(--g-red);">
         <div class="card-header">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/e/e7/Instagram_logo_2016.svg" class="icon-logo" alt="Instagram">
-            <h2 style="color: var(--ig-purple);">Connect</h2>
+            <h2 style="color: var(--g-red);">My Motivation</h2>
         </div>
-        <p style="font-size: 25px; margin-bottom: 30px;color: #000000;">Let's get to know each other better! Drop a follow or just say hi.</p>
-        <a href="https://instagram.com/princess.kosim" target="_blank" class="social-btn">@princess.kosim</a>
+        <p>
+                Motivasi terbesar saya adalah keinginan untuk menjadi <strong>jembatan (The Bridge)</strong>. Seringkali, mahasiswa di daerah merasa memiliki gap pengetahuan dengan mereka yang ada di pusat industri. Saya ingin membuktikan bahwa dengan <strong>resource</strong> yang tepat dari Google, mahasiswa <strong>Information Systems UPH Medan</strong> bisa menciptakan solusi AI yang berdampak nyata.
+            </p>
+            <p style="background: #ff8888; padding: 20px; border-radius: 20px; font-style: italic; border: 1px dashed var(--g-red);">
+                "one of the most important things in life is to be a bridge, not a wall. I want to connect people to opportunities, knowledge, and each other." - Princess Kosim
+            </p>
     </section>
+
+    <!-- SECTION: RESOLUTIONS -->
+    <section id="resolutions" class="jumbo-card" style="border-left-color: var(--g-yellow);">
+        <div class="card-header">
+            <h2 style="color: var(--g-yellow);">2026 Resolutions</h2>
+        </div>
+        <p>Jika terpilih menjadi GSA 2026, inilah target yang akan saya capai:</p>
+        
+        <div class="res-list">
+            <div class="res-item">
+                <div class="res-number">1</div>
+                <div>
+                    <strong>Program "Gemini Academic Buddy"</strong>
+                    <p style="margin: 5px 0 0; font-size: 0.9rem; opacity: 0.8;">Mengadakan workshop rutin tentang Google Cloud dan AI di kampus UPH Medan.</p>
+                </div>
+            </div>
+            <div class="res-item">
+                <div class="res-number">2</div>
+                <div>
+                    <strong>Community Growth (200+ Members)</strong>
+                    <p style="margin: 5px 0 0; font-size: 0.9rem; opacity: 0.8;">Kolaborasi HIMA/BEM: Mengusulkan Gemini sebagai alat bantu dalam penyusunan proposal kegiatan organisasi agar lebih efisien.</p>
+                </div>
+            </div>
+            <div class="res-item">
+                <div class="res-number">3</div>
+                <div>
+                    <strong>Kampanye Digital Realistis</strong>
+                    <p style="margin: 5px 0 0; font-size: 0.9rem; opacity: 0.8;">"A Day with Gemini" Series: Konten Reels/TikTok pendek yang menunjukkan bagaimana Gemini membantu Princess mengatur jadwal kuliah atau memecahkan soal logika yang sulit.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div id="others" class="others-grid">
+        <section class="jumbo-card" style="border-left-color: var(--spotify-green);">
+            <div class="card-header">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/1/19/Spotify_logo_without_text.svg" class="icon-logo" alt="Spotify">
+                <h2 style="color: var(--spotify-green);">Music</h2>
+            </div>
+            <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/2170cqvGR6Qb6TMFnAsA0j?utm_source=generator&theme=0" width="100%" height="250" frameBorder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+        </section>
+
+        <section class="jumbo-card" style="border-left-color: var(--ig-purple);">
+            <div class="card-header">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/e/e7/Instagram_logo_2016.svg" class="icon-logo" alt="Instagram">
+                <h2 style="color: var(--ig-purple);">Connect</h2>
+            </div>
+            <p style="margin-bottom: 20px;">Let's get in touch!</p>
+            <a href="https://instagram.com/princess.kosim" target="_blank" class="social-btn">@princess.kosim</a>
+        </section>
+    </div>
 
     <div style="text-align: center; padding: 40px; opacity: 0.6; font-size: 0.8rem; color: #000;">
         MADE WITH 💙 BY PRINCESS KOSIM FOR GSA 2026
@@ -437,12 +541,18 @@
         function enterSite() {
             const overlay = document.getElementById('welcome-overlay');
             overlay.classList.add('hidden');
-            setTimeout(() => {
-                overlay.style.display = 'none';
-            }, 800);
+            setTimeout(() => { overlay.style.display = 'none'; }, 800);
+        }
+        // FUNGSI JAVASCRIPT UNTUK SCROLL HALUS
+        function scrollToSection(id) {
+            const element = document.getElementById(id);
+            if (element) {
+                element.scrollIntoView({
+                    behavior: 'smooth'
+                });
+            }
         }
     </script>
 
 </body>
-
 </html>
