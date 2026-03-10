@@ -7,7 +7,7 @@
     <title>Princess Kosim | GSA 2026</title>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;700&display=swap" rel="stylesheet">
     <style>
-         :root {
+        :root {
             --g-blue: #4285F4;
             --g-red: #EA4335;
             --g-yellow: #FBBC05;
@@ -17,19 +17,178 @@
             --bg-dark: #0b0d0f;
             --card-solid: #121518;
         }
-        
+
+        /* --- STYLE TAMBAHAN UNTUK WELCOME OVERLAY --- */
+        #welcome-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: var(--bg-dark); /* Overlay tetap gelap agar dramatis saat masuk */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 10000;
+            cursor: pointer;
+            transition: opacity 0.8s ease, visibility 0.8s;
+            text-align: center;
+            color: white;
+        }
+
+        #welcome-overlay.hidden {
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .welcome-logo {
+            width: 80px;
+            margin-bottom: 20px;
+            animation: pulse 2s infinite ease-in-out;
+        }
+
+        .welcome-title {
+            font-size: 2rem;
+            font-weight: 800;
+            letter-spacing: 2px;
+            margin-bottom: 10px;
+        }
+
+        .click-hint {
+            position: absolute;
+            bottom: 50px;
+            font-size: 0.8rem;
+            opacity: 0.4;
+            letter-spacing: 3px;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 0.8; }
+            50% { transform: scale(1.1); opacity: 1; }
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-10px); }
+            60% { transform: translateY(-5px); }
+        }
+
+        /* --- KEMBALI KE KODE ASLIMU --- */
         body {
             margin: 0;
             font-family: 'Plus Jakarta Sans', sans-serif;
-            background-color: #ffffff;
-            color: #000000;
-            line-height: 1.6;
+            background-color: #ffffff; /* Sesuai kodemu */
+            color: #000000; /* Sesuai kodemu */
+            line-height: 2;
             overflow-x: hidden;
-            background-image: linear-gradient(rgba(66, 133, 244, 0.1) 2px, transparent 1px), linear-gradient(90deg, rgba(66, 133, 244, 0.1) 2px, transparent 2px);
+            background-image: linear-gradient(rgba(66, 133, 244, 0.1) 3px, transparent 1px), linear-gradient(90deg, rgba(66, 133, 244, 0.1) 3px, transparent 1px);
             background-size: 50px 50px;
             background-attachment: fixed;
         }
-        
+
+        .hero {
+            padding: 220px 10% 100px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            gap: 40px;
+        }
+
+        .hero-title h1 {
+            font-size: 4.5rem;
+            font-weight: 800;
+            margin: 0;
+            background: linear-gradient(90deg, var(--g-blue), var(--g-red), var(--g-yellow), var(--g-green));
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-transform: uppercase;
+            letter-spacing: -2px;
+            line-height: 1;
+        }
+
+        .hero-title p {
+            font-size: 1.5rem;
+            font-weight: 600;
+            letter-spacing: 8px;
+            text-transform: uppercase;
+            margin-top: 15px;
+            color: #ff0000;
+            opacity: 0.8;
+        }
+
+        .content-wrapper {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 80px;
+            flex-wrap: wrap;
+            width: 100%;
+        }
+
+        .tilt-container {
+            position: relative;
+            perspective: 1000px;
+        }
+
+        /* --- UPDATE UNTUK POLAROID STYLE --- */
+        .profile-photo-3d {
+            width: 380px;
+            height: auto; /* Biarkan tinggi menyesuaikan agar aspek rasio foto terjaga */
+            border-radius: 5px; /* Radius kecil untuk ujung polaroid */
+            object-fit: cover;
+            /* Border solid tebal ala polaroid */
+            border-top: 15px solid #fff;
+            border-left: 15px solid #fff;
+            border-right: 15px solid #fff;
+            border-bottom: 60px solid #fff; /* Bagian bawah lebih tebal untuk tulisan/ruang kosong */
+            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.5); /* Shadow sedikit lebih lembut tapi tetap dalam */
+            transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+            transform-style: preserve-3d;
+            display: block;
+            /* Tambahkan tulisan tangan kecil di bawah (opsional, tapi menambah kesan polaroid) */
+            position: relative;
+        }
+
+        /* Pseudo-element untuk tulisan di polaroid */
+        .profile-photo-3d::after {
+            content: "Princess @ Medan '26";
+            position: absolute;
+            bottom: 10px; /* Posisi di dalam border bawah */
+            left: 50%;
+            transform: translateX(-50%);
+            font-family: 'Permanent Marker', cursive; /* Gunakan font tulisan tangan jika ada, atau ganti default */
+            font-size: 1.2rem;
+            color: #333;
+            opacity: 0.8;
+            pointer-events: none; /* Agar tidak mengganggu interaksi hover/klik */
+        }
+
+        .profile-photo-3d:hover {
+            transform: rotateY(15deg) rotateX(10deg) scale(1.05);
+            /* Tidak mengubah warna border pada hover untuk menjaga estetika polaroid putih */
+        }
+        /* ---------------------------------- */
+
+        .shape {
+            position: absolute;
+            border-radius: 50%;
+            opacity: 0.15;
+            animation: moveAround 20s infinite linear;
+        }
+
+        .s1 { width: 100px; height: 100px; background: var(--g-blue); top: 10%; left: 5%; }
+        .s2 { width: 150px; height: 150px; background: var(--g-red); top: 70%; left: 85%; }
+        .s3 { width: 80px; height: 80px; background: var(--g-green); top: 40%; left: 50%; }
+
+        @keyframes moveAround {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(30vw, 20vh); }
+        }
+
         body::before {
             content: "";
             position: fixed;
@@ -40,7 +199,7 @@
             background: linear-gradient(90deg, var(--g-blue), var(--g-red), var(--g-yellow), var(--g-green));
             z-index: 1001;
         }
-        
+
         nav {
             padding: 20px 8%;
             display: flex;
@@ -51,9 +210,12 @@
             position: fixed;
             width: 84%;
             top: 0;
+            left: 0;
+            right: 0;
+            margin: auto;
             z-index: 1000;
         }
-        
+
         .mini-profile {
             width: 50px;
             height: 50px;
@@ -61,114 +223,44 @@
             border: 2px solid var(--g-blue);
             object-fit: cover;
         }
-        
-        .hero {
-            padding: 200px 10% 80px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            text-align: center;
-            gap: 40px;
-        }
-        
-        .content-wrapper {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 60px;
-            flex-wrap: wrap;
-            width: 100%;
-        }
-        
-        .profile-photo-3d {
-            width: 350px;
-            height: 350px;
-            border-radius: 50px;
-            border: 5px solid var(--g-blue);
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
-            transition: 0.5s;
-            animation: glowCycle 4s infinite ease-in-out;
-            object-fit: cover;
-            object-position: center;
-        }
-        
-        .profile-photo-3d:hover {
-            transform: rotateY(15deg) rotateX(10deg) scale(1.05);
-        }
-        
-        @keyframes glowCycle {
-            0%,
-            100% {
-                border-color: var(--g-blue);
-            }
-            33% {
-                border-color: var(--g-red);
-            }
-            66% {
-                border-color: var(--g-yellow);
-            }
-        }
-        
+
         .gsa-sticker {
             max-width: 400px;
             animation: float 4s infinite ease-in-out;
         }
-        
+
         @keyframes float {
-            0%,
-            100% {
-                transform: translateY(0);
-            }
-            50% {
-                transform: translateY(-20px);
-            }
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
         }
-        
+
         .jumbo-card {
-            background: var(--card-solid);
+            background: color(from color srgb r g b);
             padding: 50px;
             border-radius: 40px;
             max-width: 900px;
             margin: 0 auto 40px;
-            box-shadow: 0 20px 40px rgba(255, 55, 55, 0.3);
+            box-shadow: 0 20px 40px rgba(159, 88, 88, 0.3);
             transition: 0.3s;
             border-left: 10px solid transparent;
         }
-        
-        .jumbo-card:hover {
-            transform: translateY(-5px);
-        }
-        
-        .about-card {
-            border-left-color: var(--g-blue);
-        }
-        
-        .spotify-card {
-            border-left-color: var(--spotify-green);
-        }
-        
-        .ig-card {
-            border-left-color: var(--ig-purple);
-        }
-        
+
+        .jumbo-card:hover { transform: translateY(-5px); }
+        .about-card { border-left-color: var(--g-blue); }
+        .spotify-card { border-left-color: var(--spotify-green); }
+        .ig-card { border-left-color: var(--ig-purple); }
+
         .card-header {
             display: flex;
             align-items: center;
             gap: 15px;
             margin-bottom: 25px;
         }
-        
-        .card-header h2 {
-            margin: 0;
-            font-size: 2.5rem;
-        }
-        
-        .highlight-name {
-            color: var(--g-blue);
-            font-weight: 800;
-            border-bottom: 4px solid var(--g-green);
-        }
-        
+
+        .card-header h2 { margin: 0; font-size: 2.5rem; }
+        .icon-logo { width: 45px; height: 45px; }
+        .highlight-name { color: var(--g-blue); font-weight: 800; border-bottom: 4px solid var(--g-green); }
+
         .social-btn {
             display: inline-flex;
             align-items: center;
@@ -182,85 +274,60 @@
             font-size: 1.2rem;
             transition: 0.3s;
         }
-        
-        .social-btn:hover {
-            background: #e1306c;
-            box-shadow: 0 10px 20px rgba(193, 53, 132, 0.3);
-        }
-        /* PERBAIKAN RESPONSIVE AGAR TIDAK RATA KIRI */
-        
+
+        .social-btn:hover { background: #e1306c; box-shadow: 0 10px 20px rgba(193, 53, 132, 0.3); }
+
         @media (max-width: 768px) {
-            .hero {
-                padding-top: 150px;
-                text-align: center;
-            }
-            .hero-title h1 {
-                font-size: 2.5rem !important;
-                /* Biar pas di layar HP */
-                display: flex;
-                flex-direction: column;
-                /* Numpuk kata ke bawah biar rapi */
-                align-items: center;
-            }
-            .content-wrapper {
-                flex-direction: column;
-                gap: 30px;
-                justify-content: center;
-            }
-            .profile-photo-3d {
-                width: 280px;
-                height: 280px;
-            }
-            .gsa-sticker {
-                max-width: 300px;
-            }
-            .jumbo-card {
-                padding: 30px 20px;
-                margin: 0 15px 30px;
-                width: auto;
-                text-align: center;
-            }
-            .card-header {
-                flex-direction: column;
-                text-align: center;
-            }
-            nav {
-                width: 90%;
-                padding: 15px 5%;
-                justify-content: center;
-                gap: 10px;
-            }
-            nav div:last-child {
-                display: none;
-            }
-            /* Sembunyiin lokasi di HP */
+            .hero { padding-top: 150px; }
+            .profile-photo-3d { width: 250px; height: auto; border-bottom-width: 40px; border-left-width: 10px; border-right-width: 10px; border-top-width: 10px; }
+            .profile-photo-3d::after { font-size: 0.8rem; bottom: 5px; }
+            .jumbo-card { padding: 30px; margin: 0 5% 30px; }
+            .card-header h2 { font-size: 1.8rem; }
+            .hero-title h1 { font-size: 3rem; }
         }
     </style>
+    <link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap" rel="stylesheet">
 </head>
 
 <body>
 
+    <div id="welcome-overlay" onclick="enterSite()">
+        <img src="https://www.gstatic.com/images/branding/product/2x/google_developers_64dp.png" alt="Google Dev" class="welcome-logo">
+        <div class="welcome-title">Princess Kosim</div>
+        <div class="welcome-tagline" style="opacity: 0.6; letter-spacing: 3px; text-transform: uppercase; font-size: 0.8rem;">GSA 2026 Candidate</div>
+        <div class="click-hint">CLICK ANYWHERE TO ENTER</div>
+    </div>
+
+    <div class="background-foto"></div>
     <div class="floating-shapes">
-        <div class="shape s1" style="position: absolute; border-radius: 50%; opacity: 0.15; animation: moveAround 20s infinite linear; width: 100px; height: 100px; background: var(--g-blue); top: 10%; left: 5%;"></div>
-        <div class="shape s2" style="position: absolute; border-radius: 50%; opacity: 0.15; animation: moveAround 20s infinite linear; width: 150px; height: 150px; background: var(--g-red); top: 70%; left: 85%;"></div>
-        <div class="shape s3" style="position: absolute; border-radius: 50%; opacity: 0.15; animation: moveAround 20s infinite linear; width: 80px; height: 80px; background: var(--g-green); top: 40%; left: 50%;"></div>
+        <div class="shape s1"></div>
+        <div class="shape s2"></div>
+        <div class="shape s3"></div>
     </div>
 
     <nav>
-        <div style="font-weight: 700; color: var(--g-blue); font-size: 1.4rem;">#TeamGoogle <span style="color:white">2026</span></div>
+        <div style="font-weight: 700; color: var(--g-blue); font-size: 1.4rem;">#TeamGoogle <span style="color:rgb(255, 255, 255)">2026</span></div>
         <img src="profile.jpeg" alt="Princess" class="mini-profile">
-        <div style="font-size: 0.9rem; font-weight: bold; opacity: 0.9; letter-spacing: 1px;">MEDAN, ID</div>
     </nav>
 
     <header class="hero">
+
         <div class="hero-title">
-            <h1 style="font-weight: 900; margin: 0; font-size: 5.5rem; text-transform: uppercase; letter-spacing: -2px; line-height: 1.2; background: none; -webkit-text-fill-color: initial; display: flex; flex-wrap: wrap; justify-content: center; gap: 10px;">
+
+            <h1 style="font-size: 4.5rem; font-weight: 800; margin: 0; text-transform: uppercase; letter-spacing: -2px; line-height: 1; background: none; -webkit-text-fill-color: initial;">
+
                 <span style="color: #4285F4;">Google</span>
+
                 <span style="color: #EA4335;">Student</span>
+
                 <span style="color: #FBBC05;">Ambassador</span>
+
                 <span style="color: #34A853;">2026</span>
+
             </h1>
-            <p style="font-size: 1.5rem; font-weight: 600; letter-spacing: 8px; text-transform: uppercase; margin-top: 15px; color: #EA4335; opacity: 0.8;">Lead, Innovate, Inspire</p>
+
+            <p>Lead, Innovate, Inspire</p>
+
         </div>
 
         <div class="content-wrapper">
@@ -275,36 +342,47 @@
         <div class="card-header">
             <h2 style="color: var(--g-yellow);">About Me ✨</h2>
         </div>
-        <p style="font-size: 1.2rem; color: #eee; text-align: justify;">
+        <p style="font-size: 25px; color: #000000; text-align: justify;">
             Hello! I am <span class="highlight-name">Princess Kosim</span>, born on October 11th, 2006. Currently residing in the vibrant city of Medan, I am pursuing my Bachelor's degree at <strong>Universitas Pelita Harapan Medan</strong>. I am part
             of the Faculty of Artificial Intelligence and Data Science, majoring in <strong>Information Systems</strong>.
             <br><br> Beyond my academic life, I am a huge fan of <strong>The Neighbourhood</strong>. I have a deep passion for technology and creativity, blending the logical world of IT with my personal interests.
             <br><br> I am excited to be part of the GSA 2026 journey, where I hope to grow, learn, and contribute to our shared goals. Let's make this an unforgettable experience together!
+            <br><br> When I'm not coding or studying, you can find me curating my Spotify playlists or sharing snippets of my life on Instagram. Music and social connections are a big part of who I am, and I love sharing that with others.
         </p>
     </section>
 
     <section class="jumbo-card spotify-card">
         <div class="card-header">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/1/19/Spotify_logo_without_text.svg" style="width: 45px;" alt="Spotify">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/1/19/Spotify_logo_without_text.svg" class="icon-logo" alt="Spotify">
             <h2 style="color: var(--spotify-green);">Music Vibe</h2>
         </div>
-        <p style="margin-bottom: 20px; opacity: 0.8; color: #ffffff;">Enjoy my favorite tracks and playlists!</p>
-        <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/2170cqvGR6Qb6TMFnAsA0j?utm_source=generator&theme=0" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+        <p style="margin-bottom: 20px; opacity: 0.8; font-size: 25px; color: #000000;">Enjoy my favorite tracks and playlists!</p>
+        <iframe data-testid="embed-iframe" style="border-radius:12px" src="https://open.spotify.com/embed/playlist/2170cqvGR6Qb6TMFnAsA0j?utm_source=generator&theme=0" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
             loading="lazy"></iframe>
     </section>
 
     <section class="jumbo-card ig-card">
         <div class="card-header">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/e/e7/Instagram_logo_2016.svg" style="width: 45px;" alt="Instagram">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/e/e7/Instagram_logo_2016.svg" class="icon-logo" alt="Instagram">
             <h2 style="color: var(--ig-purple);">Connect</h2>
         </div>
-        <p style="font-size: 1.2rem; margin-bottom: 30px;color: #ffffff;">Let's get to know each other better! Drop a follow or just say hi.</p>
+        <p style="font-size: 25px; margin-bottom: 30px;color: #000000;">Let's get to know each other better! Drop a follow or just say hi.</p>
         <a href="https://instagram.com/princess.kosim" target="_blank" class="social-btn">@princess.kosim</a>
     </section>
 
-    <div style="text-align: center; padding: 40px; opacity: 0.8; font-size: 0.9rem; color: #000; font-weight: bold;">
+    <div style="text-align: center; padding: 40px; opacity: 0.6; font-size: 0.8rem; color: #000;">
         MADE WITH 💙 BY PRINCESS KOSIM FOR GSA 2026
     </div>
+
+    <script>
+        function enterSite() {
+            const overlay = document.getElementById('welcome-overlay');
+            overlay.classList.add('hidden');
+            setTimeout(() => {
+                overlay.style.display = 'none';
+            }, 800);
+        }
+    </script>
 
 </body>
 
