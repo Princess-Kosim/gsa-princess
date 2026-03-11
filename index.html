@@ -13,17 +13,31 @@
             --g-red: #EA4335;
             --g-yellow: #FBBC05;
             --g-green: #34A853;
+            --gemini-gradient: linear-gradient(135deg, #4e82ee, #a162e8, #f06292);
             --spotify-green: #1DB954;
             --ig-purple: #C13584;
             --bg-dark: #0b0d0f;
             --card-solid: #121518;
         }
-        /* MEMBUAT EFEK SCROLL HALUS KE SELURUH DOKUMEN */
+
+        /* RESET & BASE */
         html {
             scroll-behavior: smooth;
         }
 
-        /* --- STYLE TAMBAHAN UNTUK WELCOME OVERLAY --- */
+        body {
+            margin: 0;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: #ffffff;
+            color: #000000;
+            line-height: 1.8;
+            overflow-x: hidden;
+            background-image: linear-gradient(rgba(66, 133, 244, 0.05) 2px, transparent 1px), linear-gradient(90deg, rgba(66, 133, 244, 0.05) 2px, transparent 1px);
+            background-size: 40px 40px;
+            background-attachment: fixed;
+        }
+
+        /* WELCOME OVERLAY */
         #welcome-overlay {
             position: fixed;
             top: 0;
@@ -53,67 +67,32 @@
             animation: pulse 2s infinite ease-in-out;
         }
 
-        .welcome-title {
-            font-size: 2rem;
-            font-weight: 800;
-            letter-spacing: 2px;
-            margin-bottom: 10px;
-        }
-
-        .click-hint {
-            position: absolute;
-            bottom: 50px;
-            font-size: 0.8rem;
-            opacity: 0.4;
-            letter-spacing: 3px;
-            animation: bounce 2s infinite;
-        }
-
         @keyframes pulse {
             0%, 100% { transform: scale(1); opacity: 0.8; }
             50% { transform: scale(1.1); opacity: 1; }
         }
 
-        @keyframes bounce {
-            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
-            40% { transform: translateY(-10px); }
-            60% { transform: translateY(-5px); }
-        }
-
-        body {
-            margin: 0;
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            background-color: #ffffff;
-            color: #000000;
-            line-height: 2;
-            overflow-x: hidden;
-            background-image: linear-gradient(rgba(66, 133, 244, 0.1) 3px, transparent 1px), linear-gradient(90deg, rgba(66, 133, 244, 0.1) 3px, transparent 1px);
-            background-size: 50px 50px;
-            background-attachment: fixed;
-            scroll-behavior: smooth;
-        }
-
-        /* --- NAVIGASI BARU --- */
+        /* NAVIGATION */
         .main-nav {
             position: fixed;
             top: 30px;
             left: 50%;
             transform: translateX(-50%);
-            background: rgba(255, 255, 255, 0.8);
-            backdrop-filter: blur(10px);
-            padding: 10px 25px;
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+            padding: 12px 30px;
             border-radius: 50px;
             display: flex;
-            gap: 20px;
+            gap: 25px;
             z-index: 9000;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-            border: 1px solid rgba(66, 133, 244, 0.2);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(66, 133, 244, 0.15);
         }
 
         .main-nav a {
             text-decoration: none;
-            color: #333;
-            font-size: 0.85rem;
+            color: #444;
+            font-size: 0.8rem;
             font-weight: 700;
             text-transform: uppercase;
             letter-spacing: 1px;
@@ -124,123 +103,96 @@
             color: var(--g-blue);
         }
 
+        /* HERO SECTION */
         .hero {
-            padding: 220px 10% 100px;
+            padding: 180px 10% 100px;
             display: flex;
             flex-direction: column;
             align-items: center;
             text-align: center;
-            gap: 40px;
+            position: relative;
         }
 
         .hero-title h1 {
-            font-size: 4.5rem;
+            font-size: clamp(2.5rem, 8vw, 5rem);
             font-weight: 800;
             margin: 0;
-            text-transform: uppercase;
             letter-spacing: -2px;
-            line-height: 1;
+            line-height: 0.9;
         }
 
-        .hero-title p {
-            font-size: 1.5rem;
+        .hero-subtitle {
+            font-size: clamp(1rem, 3vw, 1.5rem);
             font-weight: 600;
-            letter-spacing: 8px;
+            letter-spacing: 6px;
             text-transform: uppercase;
-            margin-top: 15px;
-            color: #ff0000;
-            opacity: 0.8;
-        }
-
-        .content-wrapper {
+            margin-top: 20px;
+            color: var(--g-red);
             display: flex;
-            justify-content: center;
             align-items: center;
-            gap: 80px;
-            flex-wrap: wrap;
-            width: 100%;
+            justify-content: center;
+            gap: 15px;
         }
 
-        .tilt-container {
-            position: relative;
-            perspective: 1000px;
+        /* GEMINI SPARK ICON */
+        .gemini-spark {
+            width: 32px;
+            height: 32px;
+            fill: url(#gemini-gradient-fill);
+            filter: drop-shadow(0 0 5px rgba(161, 98, 232, 0.5));
+            animation: gemini-float 3s infinite ease-in-out;
         }
 
-        .profile-photo-3d {
-            width: 380px;
-            height: auto;
-            border-radius: 5px;
-            object-fit: cover;
-            border-top: 15px solid #fff;
-            border-left: 15px solid #fff;
-            border-right: 15px solid #fff;
-            border-bottom: 60px solid #fff;
-            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.5);
-            transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1);
-            transform-style: preserve-3d;
-            display: block;
-        }
-
-        .profile-photo-3d:hover {
-            transform: rotateY(15deg) rotateX(10deg) scale(1.05);
-        }
-
-        .shape {
-            position: absolute;
-            border-radius: 50%;
-            opacity: 0.15;
-            animation: moveAround 20s infinite linear;
-        }
-
-        .s1 { width: 100px; height: 100px; background: var(--g-blue); top: 10%; left: 5%; }
-        .s2 { width: 150px; height: 150px; background: var(--g-red); top: 70%; left: 85%; }
-        .s3 { width: 80px; height: 80px; background: var(--g-green); top: 40%; left: 50%; }
-
-        @keyframes moveAround {
-            0% { transform: translate(0, 0); }
-            100% { transform: translate(30vw, 20vh); }
-        }
-
-        body::before {
-            content: "";
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 8px;
-            background: linear-gradient(90deg, var(--g-blue), var(--g-red), var(--g-yellow), var(--g-green));
-            z-index: 1001;
-        }
-
-        .gsa-sticker {
-            max-width: 400px;
-            animation: float 4s infinite ease-in-out;
+        @keyframes gemini-float {
+            0%, 100% { transform: scale(1) rotate(0deg); opacity: 0.8; }
+            50% { transform: scale(1.2) rotate(10deg); opacity: 1; }
         }
 
         @keyframes float {
             0%, 100% { transform: translateY(0); }
             50% { transform: translateY(-20px); }
         }
-        section {
-            scroll-margin-top: 120px; /* AGAR PAS DI SCROLL TIDAK TERPOTONG NAVIGASI */
-        }
 
+        /* JUMBO CARD SYSTEM */
         .jumbo-card {
-            background: rgb(234, 234, 234);
-            padding: 50px;
+            background: #ffffff;
+            padding: 60px;
             border-radius: 40px;
             max-width: 1000px;
-            margin: 0 auto 50px;
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.05);
-            border-left: 10px solid var(--g-blue);
+            margin: 0 auto 60px;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.05);
+            border: 1px solid #f0f0f0;
             position: relative;
-            overflow: hidden;
-            transition: 0.3s;
+            transition: transform 0.4s ease;
             box-sizing: border-box;
-            
         }
 
-        .jumbo-card:hover { transform: translateY(-5px); }
+        .jumbo-card:hover {
+            transform: translateY(-8px);
+        }
+
+        /* STICKER SYSTEM */
+        .card-sticker {
+            position: absolute;
+            top: -25px;
+            right: 20px;
+            width: 150px;
+            height: 150px;
+            padding: 10px;
+            transform: rotate(12deg);
+            z-index: 10;
+            display: flex;
+            align-items: center;
+            justify-content: center;;
+            pointer-events: none;
+            transition: transform 0.2s ease-out;
+        }
+
+        .card-sticker img {
+            width: 80%;
+            height: 80%;
+            object-fit: contain;
+        }
 
         .card-header {
             display: flex;
@@ -255,125 +207,128 @@
             font-weight: 800;
         }
 
+        /* CONTENT STYLES */
+        .profile-photo-3d {
+            width: 350px;
+            border-radius: 10px;
+            border: 15px solid white;
+            border-bottom: 60px solid white;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+            transition: 0.5s;
+        }
+
+        .profile-photo-3d:hover {
+            transform: rotateY(10deg) rotateX(5deg);
+        }
+
         .table-container {
             width: 100%;
             overflow-x: auto;
-            margin-top: 20px;
             border-radius: 20px;
-            border: 1px solid #898989;
+            border: 1px solid #eee;
         }
 
         table {
             width: 100%;
             border-collapse: collapse;
-            text-align: left;
-            min-width: 600px;
+            min-width: 700px;
         }
 
         th {
-            background-color: #b1d8ff;
+            background: #f8fbff;
             padding: 20px;
-            font-weight: 800;
             color: var(--g-blue);
-            border-bottom: 3px solid #8e8e8e;
+            text-align: left;
+            font-weight: 800;
+            border-bottom: 2px solid #edf2f7;
         }
 
         td {
             padding: 20px;
-            border-bottom: 1px solid #6e6e6e;
-            vertical-align: top;
+            border-bottom: 1px solid #f0f0f0;
         }
 
         .tag {
-            padding: 5px 12px;
+            padding: 4px 12px;
             border-radius: 20px;
-            font-size: 0.75rem;
+            font-size: 0.7rem;
             font-weight: 700;
             text-transform: uppercase;
-            display: inline-block;
-            margin-bottom: 5px;
         }
 
-        .tag-blue { background: rgba(66, 133, 244, 0.1); color: var(--g-blue); }
-        .tag-red { background: rgba(234, 67, 53, 0.1); color: var(--g-red); }
-        .tag-yellow { background: rgba(251, 188, 5, 0.1); color: #b08400; }
-        .tag-green { background: rgba(52, 168, 83, 0.1); color: var(--g-green); }
+        .tag-blue { background: #e8f0fe; color: var(--g-blue); }
+        .tag-red { background: #fce8e6; color: var(--g-red); }
 
-        .res-list { list-style: none; padding: 0; }
+        /* RESOLUTION LIST */
         .res-item {
             display: flex;
-            align-items: flex-start;
-            gap: 15px;
-            margin-bottom: 20px;
-            padding: 15px;
-            background: #fdfdfd;
-            border-radius: 15px;
-            border: 1px solid #f0f0f0;
-            transition: 0.3s;
+            gap: 20px;
+            padding: 20px;
+            background: #f9f9f9;
+            border-radius: 20px;
+            margin-bottom: 15px;
+            border: 1px solid #eee;
+            align-items: center;
         }
 
-        .res-number {
-            background: var(--g-yellow);
-            color: white;
-            width: 30px;
-            height: 30px;
-            border-radius: 50%;
+        .res-icon {
+            width: 45px;
+            height: 45px;
+            background: white;
+            border-radius: 12px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-weight: bold;
-            flex-shrink: 0;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
         }
 
-        /* --- GRID UNTUK SPOTIFY & IG --- */
-        .others-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 20px;
-            max-width: 1000px;
-            margin: 0 auto 50px;
+        /* UTILS */
+        .highlight-name {
+            background: linear-gradient(120deg, rgba(70, 141, 255, 0.2) 0%, rgba(53, 131, 255, 0) 100%);
+            padding: 0 5px;
+            border-bottom: 2px solid var(--g-blue);
         }
 
-        .others-grid .jumbo-card {
-            margin: 0;
-            height: 100%;
+        .floating-shapes .shape {
+            position: fixed;
+            z-index: -1;
+            filter: blur(40px);
+            opacity: 0.1;
+            border-radius: 50%;
         }
-
-        .social-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            padding: 15px 40px;
-            background: var(--ig-purple);
-            color: white;
-            text-decoration: none;
-            border-radius: 50px;
-            font-weight: bold;
-            transition: 0.3s;
-        }
-
-        .icon-logo { width: 30px; }
 
         @media (max-width: 768px) {
-            .others-grid { grid-template-columns: 1fr; padding: 0 15px; }
-            .hero-title h1 { font-size: 2.2rem; }
-            .main-nav { width: 90%; gap: 10px; padding: 10px; overflow-x: auto; justify-content: flex-start; }
-            .main-nav a { font-size: 0.6rem; white-space: nowrap; }
-            .profile-photo-3d { width: 220px; }
-            .jumbo-card { margin: 0 15px 25px; padding: 25px; }
+            .hero { padding-top: 140px; }
+            .jumbo-card { padding: 30px; margin: 0 15px 40px; }
+            .content-wrapper { flex-direction: column; gap: 40px; }
+            .profile-photo-3d { width: 280px; }
+            .main-nav { width: 85%; padding: 10px 15px; gap: 10px; }
+            .main-nav a { font-size: 0.65rem; }
+            .card-sticker { width: 70px; height: 70px; top: -15px; right: 10px; }
         }
     </style>
 </head>
 
 <body>
 
+    <!-- SVG Definitions for Gemini Gradients -->
+    <svg style="width:0;height:0;position:absolute;" aria-hidden="true" focusable="false">
+        <linearGradient id="gemini-gradient-fill" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" style="stop-color:#4e82ee" />
+            <stop offset="50%" style="stop-color:#a162e8" />
+            <stop offset="100%" style="stop-color:#f06292" />
+        </linearGradient>
+    </svg>
+
+    <!-- Welcome Screen -->
     <div id="welcome-overlay" onclick="enterSite()">
         <img src="https://www.gstatic.com/images/branding/product/2x/google_developers_64dp.png" alt="Google Dev" class="welcome-logo">
-        <div class="welcome-title">Princess Kosim</div>
-        <div class="welcome-tagline" style="opacity: 0.6; letter-spacing: 3px; text-transform: uppercase; font-size: 0.8rem;">GSA 2026 Candidate</div>
-        <div class="click-hint">CLICK ANYWHERE TO ENTER</div>
+        <div style="font-size: 2rem; font-weight: 800; letter-spacing: 2px;">Princess Kosim</div>
+        <div style="opacity: 0.6; letter-spacing: 4px; text-transform: uppercase; font-size: 0.7rem; margin-top: 10px;">GSA 2026 Candidate x Gemini AI</div>
+        <div style="position: absolute; bottom: 50px; opacity: 0.4; font-size: 0.7rem; letter-spacing: 3px;">CLICK TO ENTER</div>
     </div>
 
+    <!-- Navigation -->
     <nav class="main-nav">
         <a href="#about">About</a>
         <a href="#why">Why GSA</a>
@@ -382,46 +337,62 @@
         <a href="#others">Connect</a>
     </nav>
 
+    <!-- Background Shapes -->
     <div class="floating-shapes">
-        <div class="shape s1"></div>
-        <div class="shape s2"></div>
-        <div class="shape s3"></div>
+        <div class="shape" style="width: 400px; height: 400px; background: var(--g-blue); top: -100px; left: -100px;"></div>
+        <div class="shape" style="width: 300px; height: 300px; background: var(--g-red); bottom: 10%; right: -50px;"></div>
     </div>
 
+    <!-- Hero -->
     <header class="hero">
         <div class="hero-title">
-            <h1 style="font-size: 4.5rem; font-weight: 800; margin: 0; text-transform: uppercase; letter-spacing: -2px; line-height: 1; background: none; -webkit-text-fill-color: initial;">
-                <span style="color: #4285F4;">Google</span>
-                <span style="color: #EA4335;">Student</span>
-                <span style="color: #FBBC05;">Ambassador</span>
-                <span style="color: #34A853;">2026</span>
+            <h1>
+                <span style="color: var(--g-blue);">Google</span>
+                <span style="color: var(--g-red);">Student</span>
+                <span style="color: var(--g-yellow);">Ambassador</span>
+                <span style="color: var(--g-green);">2026</span>
             </h1>
-            <p>Lead, Innovate, Inspire</p>
-        </div>
-        <div class="content-wrapper">
-            <div class="tilt-container">
-                <img src="profile01.jpeg" alt="Princess Kosim" class="profile-photo-3d">
+            <div class="hero-subtitle">
+                <svg class="gemini-spark" viewBox="0 0 24 24"><path d="M12 2L14.5 9.5L22 12L14.5 14.5L12 22L9.5 14.5L2 12L9.5 9.5L12 2Z"/></svg>
+                Lead, Innovate, Inspire
+                <svg class="gemini-spark" viewBox="0 0 24 24"><path d="M12 2L14.5 9.5L22 12L14.5 14.5L12 22L9.5 14.5L2 12L9.5 9.5L12 2Z"/></svg>
             </div>
-            <img src="image01.avif" alt="GSA Sticker" class="gsa-sticker">
+        </div>
+        
+        <div class="content-wrapper" style="display: flex; gap: 60px; align-items: center; margin-top: 60px; flex-wrap: wrap; justify-content: center;">
+            <div style="perspective: 1000px;">
+                <img src="profile01.jpeg" alt="Princess Kosim" class="profile-photo-3d" onerror="this.src='https://via.placeholder.com/350x450?text=Princess+Kosim'">
+            </div>
+            <img src="image01.avif" alt="GSA Badge" style="max-width: 350px; animation: float 4s infinite ease-in-out;" onerror="this.style.display='none'">
         </div>
     </header>
 
-    <section id="about" class="jumbo-card about-card">
-        <div class="card-header">
-            <h2 style="color: var(--g-yellow);">About Me</h2>
+    <!-- About Section -->
+    <section id="about" class="jumbo-card" style="border-left: 8px solid var(--g-blue);">
+        <div class="card-sticker">
+            <img src="image03.avif" alt="Google">
         </div>
-        <p style="font-size: 25px; color: #000000; text-align: justify;">
+        <div class="card-header">
+            <svg class="gemini-spark" viewBox="0 0 24 24" style="width:24px; height:24px;"><path d="M12 2L14.5 9.5L22 12L14.5 14.5L12 22L9.5 14.5L2 12L9.5 9.5L12 2Z"/></svg>
+            <h2 style="color: var(--g-blue);">About Me</h2>
+        </div>
+        <p style="font-size: 1.1rem; text-align: justify;">
             Hello! I am <span class="highlight-name">Princess Kosim</span>, born on October 11th, 2006. Currently residing in the vibrant city of Medan, I am pursuing my Bachelor's degree at <strong>Universitas Pelita Harapan Medan</strong>. I am part
             of the Faculty of Artificial Intelligence and Data Science, majoring in <strong>Information Systems</strong>.
-            <br><br> Beyond my academic life, I am a huge fan of <strong>The Neighbourhood</strong>. I have a deep passion for technology and creativity, blending the logical world of IT with my personal interests.
+            <br><br> My passion for technology and innovation has driven me to explore the world of AI, and I am eager to bring that enthusiasm to the Google Student Ambassador program. I believe that with the right tools and community, we can empower students in Medan to become leaders in the digital age.
             <br><br> I am excited to be part of the GSA 2026 journey, where I hope to grow, learn, and contribute to our shared goals. Let's make this an unforgettable experience together!
-            <br><br> When I'm not coding or studying, you can find me curating my Spotify playlists or sharing snippets of my life on Instagram. Music and social connections are a big part of who I am, and I love sharing that with others.
+            <br><br> Beyond academics, I am a tech enthusiast who loves to stay updated with the latest trends in AI and software development. I enjoy experimenting with new technologies and sharing my findings with my peers. My goal is to create a vibrant tech community at UPH Medan where students can collaborate, innovate, and thrive.
+            <br><br> When I'm not coding or studying, you can find me curating my <a href="https://open.spotify.com/playlist/2170cqvGR6Qb6TMFnAsA0j?si=6740624f5e7f4a4b" target="_blank">Spotify</a> playlists or sharing snippets of my life on <a href="https://www.instagram.com/princess.kosim/" target="_blank">Instagram</a>. Music and social connections are a big part of who I am, and I love sharing that with others.
         </p>
     </section>
 
-    <section id="why" class="jumbo-card" style="border-left-color: var(--g-blue);">
+    <!-- Why GSA Section -->
+    <section id="why" class="jumbo-card" style="border-left: 8px solid var(--g-red);">
+        <div class="card-sticker" style="transform: rotate(-10deg); top: -20px;">
+            <img src="image05.avif" alt="Firebase">
+        </div>
         <div class="card-header">
-            <h2 style="color: var(--g-blue);">Why Join GSA 2026? 🚀</h2>
+            <h2 style="color: var(--g-red);">Why Join GSA 2026? 🚀</h2>
         </div>
         <div class="table-container">
             <table>
@@ -470,72 +441,75 @@
         </div>
     </section>
 
-    <section id="motivation" class="jumbo-card" style="border-left-color: var(--g-red);">
+    <!-- Motivation Section -->
+    <section id="motivation" class="jumbo-card" style="border-left: 8px solid var(--g-green);" style="background: white; color: rgb(0, 0, 0);">
+            <div class="card-sticker" style="transform: rotate(15deg); top: -20px;">
+                <img src="image04.avif" alt="Motivation">
+            </div>
         <div class="card-header">
-            <h2 style="color: var(--g-red);">My Motivation</h2>
+            <h2 style="color: #000000;">Motivation</h2>
         </div>
         <p>
                 Motivasi terbesar saya adalah keinginan untuk menjadi <strong>jembatan (The Bridge)</strong>. Seringkali, mahasiswa di daerah merasa memiliki gap pengetahuan dengan mereka yang ada di pusat industri. Saya ingin membuktikan bahwa dengan <strong>resource</strong> yang tepat dari Google, mahasiswa <strong>Information Systems UPH Medan</strong> bisa menciptakan solusi AI yang berdampak nyata.
             </p>
-            <p style="background: #ff8888; padding: 20px; border-radius: 20px; font-style: italic; border: 1px dashed var(--g-red);">
+            <p style="background: #8dff8b; padding: 20px; border-radius: 20px; font-style: italic; border: 1px dashed var(--g-red);">
                 "one of the most important things in life is to be a bridge, not a wall. I want to connect people to opportunities, knowledge, and each other." - Princess Kosim
             </p>
     </section>
 
-    <!-- SECTION: RESOLUTIONS -->
-    <section id="resolutions" class="jumbo-card" style="border-left-color: var(--g-yellow);">
-        <div class="card-header">
-            <h2 style="color: var(--g-yellow);">2026 Resolutions</h2>
+    <!-- Resolutions Section -->
+    <section id="resolutions" class="jumbo-card" style="border-left: 8px solid var(--g-yellow);">
+        <div class="card-sticker">
+            <svg class="gemini-spark" viewBox="0 0 24 24" style="width:50px; height:50px;"><path d="M12 2L14.5 9.5L22 12L14.5 14.5L12 22L9.5 14.5L2 12L9.5 9.5L12 2Z"/></svg>
         </div>
-        <p>Jika terpilih menjadi GSA 2026, inilah target yang akan saya capai:</p>
+        <div class="card-header">
+            <h2 style="color: var(--g-yellow);">Resolution</h2>
+        </div>
         
-        <div class="res-list">
-            <div class="res-item">
-                <div class="res-number">1</div>
-                <div>
-                    <strong>Program "Gemini Academic Buddy"</strong>
-                    <p style="margin: 5px 0 0; font-size: 0.9rem; opacity: 0.8;">Mengadakan workshop rutin tentang Google Cloud dan AI di kampus UPH Medan.</p>
-                </div>
+        <div class="res-item">
+            <div class="res-icon">
+                <svg viewBox="0 0 24 24" style="width:24px; fill:var(--g-blue);"><path d="M12 2L14.5 9.5L22 12L14.5 14.5L12 22L9.5 14.5L2 12L9.5 9.5L12 2Z"/></svg>
             </div>
-            <div class="res-item">
-                <div class="res-number">2</div>
-                <div>
-                    <strong>Community Growth (200+ Members)</strong>
-                    <p style="margin: 5px 0 0; font-size: 0.9rem; opacity: 0.8;">Kolaborasi HIMA/BEM: Mengusulkan Gemini sebagai alat bantu dalam penyusunan proposal kegiatan organisasi agar lebih efisien.</p>
-                </div>
+            <div>
+                <strong>Gemini Academic Buddy</strong>
+                <p style="margin:5px 0 0; font-size: 0.85rem; opacity: 0.7;">Integrating Gemini AI into daily student workflows at UPH Medan.</p>
             </div>
-            <div class="res-item">
-                <div class="res-number">3</div>
-                <div>
-                    <strong>Kampanye Digital Realistis</strong>
-                    <p style="margin: 5px 0 0; font-size: 0.9rem; opacity: 0.8;">"A Day with Gemini" Series: Konten Reels/TikTok pendek yang menunjukkan bagaimana Gemini membantu Princess mengatur jadwal kuliah atau memecahkan soal logika yang sulit.</p>
-                </div>
+        </div>
+
+        <div class="res-item">
+            <div class="res-icon">
+                <svg viewBox="0 0 24 24" style="width:24px; fill:var(--g-green);"><path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5s-3 1.34-3 3 1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5z"/></svg>
+            </div>
+            <div>
+                <strong>Kampanye Digital</strong>
+                <p style="margin:5px 0 0; font-size: 0.85rem; opacity: 0.7;">"A Day with Gemini" Series: Konten Reels/TikTok pendek</p>
             </div>
         </div>
     </section>
 
-    <div id="others" class="others-grid">
-        <section class="jumbo-card" style="border-left-color: var(--spotify-green);">
+    <!-- Socials Grid -->
+    <div id="others" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; max-width: 1000px; margin: 0 auto 100px; padding: 0 20px;">
+        <section class="jumbo-card" style="margin: 0; padding: 40px; border-left: 10px solid var(--spotify-green);">
             <div class="card-header">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/1/19/Spotify_logo_without_text.svg" class="icon-logo" alt="Spotify">
-                <h2 style="color: var(--spotify-green);">Music</h2>
+                <img src="https://upload.wikimedia.org/wikipedia/commons/1/19/Spotify_logo_without_text.svg" style="width:30px;" alt="Spotify">
+                <h2 style="color: var(--spotify-green); font-size: 1.5rem;">Vibes</h2>
             </div>
-            <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/2170cqvGR6Qb6TMFnAsA0j?utm_source=generator&theme=0" width="100%" height="250" frameBorder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+            <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/2170cqvGR6Qb6TMFnAsA0j?utm_source=generator&theme=0" width="100%" height="200" frameBorder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
         </section>
 
-        <section class="jumbo-card" style="border-left-color: var(--ig-purple);">
+        <section class="jumbo-card" style="margin: 0; padding: 40px; border-left: 10px solid var(--ig-purple);">
             <div class="card-header">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/e/e7/Instagram_logo_2016.svg" class="icon-logo" alt="Instagram">
-                <h2 style="color: var(--ig-purple);">Connect</h2>
+                <img src="https://upload.wikimedia.org/wikipedia/commons/e/e7/Instagram_logo_2016.svg" style="width:30px;" alt="IG">
+                <h2 style="color: var(--ig-purple); font-size: 1.5rem;">Social</h2>
             </div>
-            <p style="margin-bottom: 20px;">Let's get in touch!</p>
-            <a href="https://instagram.com/princess.kosim" target="_blank" class="social-btn">@princess.kosim</a>
+            <p>Let's collaborate on future tech projects!</p>
+            <a href="https://instagram.com/princess.kosim" target="_blank" style="display:inline-block; margin-top:15px; background:var(--ig-purple); color:white; padding: 12px 30px; border-radius:30px; text-decoration:none; font-weight:bold;">@princess.kosim</a>
         </section>
     </div>
 
-    <div style="text-align: center; padding: 40px; opacity: 0.6; font-size: 0.8rem; color: #000;">
-        MADE WITH 💙 BY PRINCESS KOSIM FOR GSA 2026
-    </div>
+    <footer style="text-align: center; padding: 60px; opacity: 0.5; font-size: 0.75rem; letter-spacing: 2px;">
+        MADE WITH 💙 BY PRINCESS KOSIM • GSA 2026 CANDIDATE
+    </footer>
 
     <script>
         function enterSite() {
@@ -543,15 +517,17 @@
             overlay.classList.add('hidden');
             setTimeout(() => { overlay.style.display = 'none'; }, 800);
         }
-        // FUNGSI JAVASCRIPT UNTUK SCROLL HALUS
-        function scrollToSection(id) {
-            const element = document.getElementById(id);
-            if (element) {
-                element.scrollIntoView({
-                    behavior: 'smooth'
-                });
-            }
-        }
+
+        // Add subtle parallax to stickers
+        document.addEventListener('mousemove', (e) => {
+            const stickers = document.querySelectorAll('.card-sticker');
+            const x = (window.innerWidth - e.pageX) / 50;
+            const y = (window.innerHeight - e.pageY) / 50;
+            
+            stickers.forEach(sticker => {
+                sticker.style.transform = `rotate(12deg) translate(${x}px, ${y}px)`;
+            });
+        });
     </script>
 
 </body>
