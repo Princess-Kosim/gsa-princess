@@ -1,0 +1,36 @@
+Buatkan saya sebuah website portofolio satu file (Single File HTML/CSS/JS) untuk kandidat Google Student Ambassador (GSA) 2026. Website ini harus memiliki estetika modern, bersih, dan menggunakan identitas visual Google & Gemini AI.
+
+Ketentuan Desain & Fitur Utama:
+
+Palet Warna: Gunakan variabel CSS untuk warna Google (Blue, Red, Yellow, Green) dan gradasi linear Gemini (biru-ungu-pink).
+
+Layout: Gunakan background grid pattern yang halus dan elemen 'floating shapes' di latar belakang dengan efek blur.
+
+Welcome Overlay: Tambahkan layar sambutan (overlay) penuh berwarna gelap dengan logo Google Dev yang berdenyut (pulse). User harus mengklik layar tersebut untuk masuk ke website.
+
+Navigation: Buat navbar melayang (floating) yang transparan (glassmorphism) di tengah atas layar.
+
+Hero Section: Judul besar dengan warna brand Google, subtitle dengan icon 'Gemini Spark' yang bergerak, dan bingkai foto bergaya Polaroid 3D yang memiliki efek rotasi saat disentuh mouse.
+
+Sistem Kartu (Jumbo Card): Gunakan kartu putih besar dengan radius sudut yang lebar (40px) dan bayangan lembut. Setiap kartu harus memiliki 'Sticker' dekoratif di pojoknya yang memiliki efek parallax (bergerak sedikit mengikuti gerakan mouse).
+
+Konten Wajib:
+
+About Me: Penjelasan profil.
+
+Tabel Fokus: Tabel responsif berisi aspek fokus, tujuan, dan dampak.
+
+Motivation: Kutipan motivasi dalam kotak berdesain khusus.
+
+Resolutions: Daftar rencana aksi dengan ikon SVG.
+
+Connect: Grid untuk widget Spotify (iframe) dan tombol Instagram.
+
+Teknis: Gunakan Google Fonts 'Plus Jakarta Sans' dan 'Permanent Marker'. Pastikan website sepenuhnya responsif untuk perangkat mobile dan berikan komentar penjelasan di setiap bagian kodenya dalam bahasa Indonesia agar mudah dipelajari."
+
+Mengapa prompt ini efektif?
+Detail Visual: Menjelaskan secara spesifik tentang glassmorphism, parallax, dan 3D Polaroid agar AI tidak memberikan desain yang terlalu kaku atau standar.
+
+Interaktivitas: Menyebutkan secara eksplisit fitur Welcome Overlay dan animasi mouse agar website terasa "hidup".
+
+Struktur Kode: Meminta AI untuk memberikan komentar penjelasan, sama seperti yang baru saja saya lakukan pada Canvas milikmu, sehingga teman-temanmu bisa mengedit isinya dengan mudah.
